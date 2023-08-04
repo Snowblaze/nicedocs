@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaGithub } from 'react-icons/fa';
 import { RiArrowDownSFill } from 'react-icons/ri';
-import { libraryNames } from '@/app/[slug]/paths';
+import { libraryNames } from '@/docs/pages';
 
 type Props = {
   currentLibraryName: string;
