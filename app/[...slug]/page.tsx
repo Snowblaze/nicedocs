@@ -26,22 +26,24 @@ export async function generateStaticParams() {
   const keys = Object.keys(docs) as LibraryName[];
 
   const processPageRecursive = (page: MarkdownPage): string[][] => {
-    return [
-      [page.pathname],
-      ...(page.children
-        ? page.children
-            .map(processPageRecursive)
-            .flat()
-            .map((innerPath) => [page.pathname, ...innerPath])
-        : []),
-    ];
+    return page.children
+      ? page.children
+          .map(processPageRecursive)
+          .flat()
+          .map((innerPath) => [page.pathname, ...innerPath])
+      : [[page.pathname]];
   };
 
   const allSlugs = keys
     .map((libraryName) => {
-      return docs[libraryName].map(processPageRecursive).flat();
+      return docs[libraryName]
+        .map(processPageRecursive)
+        .flat()
+        .map((path) => [libraryName, ...path]);
     })
     .flat();
+
+  console.log(allSlugs);
 
   return allSlugs.map((slug) => ({
     slug,
