@@ -37,7 +37,7 @@ const Header: React.FC<Props> = ({ currentLibraryName }) => {
                     currentLibraryName === name ? 'bg-gray-100 text-main' : ''
                   }`}
                 >
-                  <Link className="inline-block px-2 py-1" href={name}>
+                  <Link className="inline-block px-2 py-1" href={`/${name}`}>
                     {name}
                   </Link>
                 </li>
