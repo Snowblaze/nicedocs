@@ -4,6 +4,7 @@ import remarkGfm from 'remark-gfm';
 import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
 import Link from 'next/link';
 import Image from 'next/image';
+import EditPage from '@/components/EditPage';
 
 type Props = {
   slug: string[];
@@ -68,7 +69,10 @@ const Content: React.FC<Props> = ({ slug }) => {
   const doc = getDocBySlug(slug.join('/'));
 
   return (
-    <div className="px-4">
+    <div className="m-auto mb-24 max-w-4xl px-4">
+      <div className="flex justify-end">
+        <EditPage sourceLocation={slug.join('/')} />
+      </div>
       <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
         {doc.content}
       </ReactMarkdown>

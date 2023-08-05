@@ -14,10 +14,9 @@ export default function Library({ params: { slug } }: Props) {
       <div className="w-64 border-r border-gray-200 p-2">
         <TableOfContents slug={slug} />
       </div>
-      <div className="flex-1 border-r border-gray-200">
+      <div className="flex-1 justify-center">
         <Content slug={slug} />
       </div>
-      <div className="flex-1">code</div>
     </div>
   );
 }
