@@ -12,7 +12,12 @@ const TableOfContents: React.FC<Props> = ({ slug }) => {
   return (
     <ul>
       {pages.map((page) => (
-        <Section parentPath={slug[0]} page={page} key={page.pathname} />
+        <Section
+          slug={slug}
+          parentPath={slug[0]}
+          page={page}
+          key={page.pathname}
+        />
       ))}
     </ul>
   );

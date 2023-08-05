@@ -43,8 +43,6 @@ export async function generateStaticParams() {
     })
     .flat();
 
-  console.log(allSlugs);
-
   return allSlugs.map((slug) => ({
     slug,
   }));

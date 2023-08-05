@@ -10,12 +10,16 @@ import type { MarkdownPage } from '@/types';
 type Props = {
   page: MarkdownPage;
   parentPath: string;
+  slug: string[];
 };
 
-const Section: React.FC<Props> = ({ page, parentPath }) => {
+const Section: React.FC<Props> = ({ slug, page, parentPath }) => {
   if (page.children) {
     return (
-      <Accordion type="multiple">
+      <Accordion
+        defaultValue={slug.includes(page.pathname) ? page.pathname : undefined}
+        type="single"
+      >
         <AccordionItem value={page.pathname}>
           <AccordionTrigger className="flex cursor-pointer rounded px-2 py-1 text-base font-normal transition-all duration-200 hover:bg-gray-100 hover:no-underline">
             {page.title}
@@ -24,6 +28,7 @@ const Section: React.FC<Props> = ({ page, parentPath }) => {
             <ul className="pl-3">
               {page.children?.map((child) => (
                 <Section
+                  slug={slug}
                   parentPath={[parentPath, page.pathname].join('/')}
                   page={child}
                   key={child.pathname}
@@ -36,7 +41,11 @@ const Section: React.FC<Props> = ({ page, parentPath }) => {
     );
   }
   return (
-    <li className="rounded transition-all duration-200 hover:bg-gray-100">
+    <li
+      className={`rounded transition-all duration-200 hover:bg-gray-100 ${
+        slug.includes(page.pathname) ? 'bg-gray-100' : ''
+      }`}
+    >
       <Link
         className="flex px-2 py-1 text-base"
         href={`/${[parentPath, page.pathname].join('/')}`}

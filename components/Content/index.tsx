@@ -55,7 +55,6 @@ const components: Components = {
     <pre {...props} className="rounded-lg border bg-gray-100 p-4" />
   ),
   blockquote: ({ node, ...props }) => {
-    console.log(node.children[1]);
     return (
       <blockquote
         {...props}
