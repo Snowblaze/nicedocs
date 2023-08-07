@@ -5,6 +5,7 @@ import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
 import Link from 'next/link';
 import Image from 'next/image';
 import EditPage from '@/components/EditPage';
+import BlockQuote from '@/components/BlockQuote';
 
 type Props = {
   slug: string[];
@@ -55,14 +56,7 @@ const components: Components = {
   pre: ({ node, ...props }) => (
     <pre {...props} className="rounded-lg border bg-gray-100 p-4" />
   ),
-  blockquote: ({ node, ...props }) => {
-    return (
-      <blockquote
-        {...props}
-        className="my-7 text-base font-normal text-red-600"
-      />
-    );
-  },
+  blockquote: BlockQuote,
 };
 
 const Content: React.FC<Props> = ({ slug }) => {
